@@ -45,7 +45,7 @@ clean:
 	
 $(OUTPUT):	$(OBJS)
 	@echo [Linking $@]
-	riscv32-unknown-elf-gcc -march=rv32im -mabi=ilp32 -mno-shorten-memrefs -O0 -fno-inline -fno-optimize-sibling-calls $(OBJS) -o  $(OUTPUT) 
+	riscv32-unknown-elf-gcc -march=rv32im -mabi=ilp32 $(OBJS) -o  $(OUTPUT) 
 	@echo [Size]
 	-$(CROSS_COMPILE)size $(OUTPUT)
 

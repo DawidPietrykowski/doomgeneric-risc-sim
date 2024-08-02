@@ -55,6 +55,9 @@ uint32_t ms_sim = 0;
 
 void DG_SleepMs(uint32_t ms)
 {
+  // memset(0x12345678, 0, 100); // temp delay
+  uint32_t ticks = DG_GetTicksMs();
+  while (DG_GetTicksMs() - ticks < ms) {};
 }
 uint32_t DG_GetTicksMs()
 {
