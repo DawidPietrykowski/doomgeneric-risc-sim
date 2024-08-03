@@ -67,6 +67,7 @@ uint32_t DG_GetTicksMs()
     uint32_t us = (stop.tv_usec - start.tv_usec);
 
     if (stop.tv_usec < start.tv_usec) {
+      s = s - 1;
       us = 1000000 + stop.tv_usec - start.tv_usec;
     }
     uint32_t ms = us / 1000;

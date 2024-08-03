@@ -213,7 +213,7 @@ void D_Display (void)
     switch (gamestate)
     {
       case GS_LEVEL:
-        printf ("D_Display: GS_LEVEL\n");
+        printf ("D_Display: GS_LEVEL gametic: %d\n", gametic);
 		if (!gametic)
 			break;
 		if (automapactive)
