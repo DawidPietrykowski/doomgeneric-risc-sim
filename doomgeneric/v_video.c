@@ -156,6 +156,11 @@ void V_DrawPatch(int x, int y, patch_t *patch)
             return;
     }
 
+    // if (patch->width == 320)
+    //     patch->width = SCREENWIDTH;
+    // if (patch->height == 200)
+    //     patch->height = SCREENHEIGHT;
+
 #ifdef RANGECHECK
     if (x < 0
      || x + SHORT(patch->width) > SCREENWIDTH

@@ -47,8 +47,9 @@ void DG_Init()
 
 void DG_DrawFrame()
 {
-  // printf("draw frame\n");
-  memcpy(SCREEN_ADDR, DG_ScreenBuffer, DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t));
+  uint32_t size = DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t);
+  memcpy(SCREEN_ADDR, DG_ScreenBuffer, size);
+  memset(SCREEN_ADDR + size, 1, 1);
 }
 
 uint32_t ms_sim = 0;
