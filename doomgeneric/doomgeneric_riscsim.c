@@ -11,6 +11,7 @@
 #include <stddef.h>
 #include <errno.h>
 #include <sys/time.h>
+#include "i_video.h"
 
 #define KEYQUEUE_SIZE 16
 
@@ -47,9 +48,11 @@ void DG_Init()
 
 void DG_DrawFrame()
 {
-  uint32_t size = DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t);
-  memcpy(SCREEN_ADDR, DG_ScreenBuffer, size);
-  memset(SCREEN_ADDR + size, 1, 1);
+  *(uint32_t*)SCREEN_ADDR = DG_ScreenBuffer;
+  // printf("Set addr: %x\n", *(uint32_t*)SCREEN_ADDR);
+  // uint32_t size = DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t);
+  // memcpy(SCREEN_ADDR, DG_ScreenBuffer, size);
+  // memset(SCREEN_ADDR + size, 1, 1);
 }
 
 uint32_t ms_sim = 0;
