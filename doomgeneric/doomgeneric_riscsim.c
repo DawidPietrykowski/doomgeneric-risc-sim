@@ -48,7 +48,7 @@ void DG_Init()
 
 void DG_DrawFrame()
 {
-  *(uint32_t*)SCREEN_ADDR = DG_ScreenBuffer;
+  *(uint32_t*)SCREEN_ADDR = (uint32_t)DG_ScreenBuffer;
   // printf("Set addr: %x\n", *(uint32_t*)SCREEN_ADDR);
   // uint32_t size = DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t);
   // memcpy(SCREEN_ADDR, DG_ScreenBuffer, size);

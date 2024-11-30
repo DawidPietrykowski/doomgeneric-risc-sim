@@ -43,7 +43,7 @@ clean:
 
 $(OUTPUT):	$(OBJS)
 	@echo [Linking $@]
-	riscv64-unknown-elf-gcc -march=rv64im -mabi=lp64 $(OBJS) -o  $(OUTPUT) 
+	riscv64-unknown-elf-gcc -march=rv64g -mabi=lp64d $(OBJS) -o  $(OUTPUT) 
 	@echo [Size]
 	-$(CROSS_COMPILE)size $(OUTPUT)
 
