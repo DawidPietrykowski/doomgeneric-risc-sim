@@ -12,7 +12,7 @@ else
 endif
 
 
-CC=riscv32-unknown-elf-gcc  # gcc or g++
+CC=riscv64-unknown-elf-gcc  # gcc or g++
 # CFLAGS+=-ggdb3 -Os
 
 # CFLAGS+=-ggdb3 -Wall -DNORMALUNIX -DLINUX -DSNDSERV -D_DEFAULT_SOURCE # -DUSEASM
@@ -41,11 +41,9 @@ clean:
 # $(VB)$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) \
 	-o $(OUTPUT) $(LIBS) -Wl,-Map,$(OUTPUT).map
 
-#riscv32-unknown-elf-gcc -march=rv32im -mabi=ilp32 -mno-shorten-memrefs -O0 -fno-inline -fno-optimize-sibling-calls  $(OBJS) -o  $(OUTPUT) 
-	
 $(OUTPUT):	$(OBJS)
 	@echo [Linking $@]
-	riscv32-unknown-elf-gcc -march=rv32im -mabi=ilp32 $(OBJS) -o  $(OUTPUT) 
+	riscv64-unknown-elf-gcc -march=rv64im -mabi=lp64 $(OBJS) -o  $(OUTPUT) 
 	@echo [Size]
 	-$(CROSS_COMPILE)size $(OUTPUT)
 
