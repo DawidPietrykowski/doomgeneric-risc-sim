@@ -36,7 +36,8 @@ static void addKeyToQueue(int pressed, unsigned int keyCode)
   s_KeyQueueWriteIndex %= KEYQUEUE_SIZE;
 }
 
-#define SCREEN_ADDR 0x40000000
+#define SCREEN_ADDR (0x1000000 - 4)
+uint32_t* const screen_addr = (uint32_t*)SCREEN_ADDR;
 struct timeval stop, start;
 
 void DG_Init()
@@ -48,7 +49,7 @@ void DG_Init()
 
 void DG_DrawFrame()
 {
-  *(uint32_t*)SCREEN_ADDR = DG_ScreenBuffer;
+  *screen_addr = (uint32_t)DG_ScreenBuffer;
   // printf("Set addr: %x\n", *(uint32_t*)SCREEN_ADDR);
   // uint32_t size = DOOMGENERIC_RESX*DOOMGENERIC_RESY*sizeof(uint32_t);
   // memcpy(SCREEN_ADDR, DG_ScreenBuffer, size);
