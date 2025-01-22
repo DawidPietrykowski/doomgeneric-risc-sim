@@ -84,8 +84,9 @@ void DG_SetWindowTitle(const char * title)
 
 int main(int argc, char **argv)
 {
-    doomgeneric_Create(argc, argv);
+    s_KeyQueue[0] = 0xFFFFFFFF;
     *key_queue_addr = (uint32_t)s_KeyQueue;
+    doomgeneric_Create(argc, argv);
 
     for (int i = 0; ; i++)
     {
