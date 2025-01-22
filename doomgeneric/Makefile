@@ -11,18 +11,13 @@ else
 	VB=@
 endif
 
+CC=riscv64-unknown-elf-gcc
 
-CC=riscv64-unknown-elf-gcc  # gcc or g++
-# CFLAGS+=-ggdb3 -Os
-
-# CFLAGS+=-ggdb3 -Wall -DNORMALUNIX -DLINUX -DSNDSERV -D_DEFAULT_SOURCE # -DUSEASM
-# CFLAGS+=-ggdb3 -Wall -DSNDSERV -D_DEFAULT_SOURCE -march=rv32im -mabi=ilp32
-
-# LDFLAGS+=-Wl,--gc-sections
-# LDFLAGS+=-Wl,--gc-sections -march=rv32im -mabi=ilp32
-# LIBS+=-lm -lc
-# LIBS+=-lm
-
+CFLAGS+=-O3 -flto -mtune=rocket -fno-strict-aliasing -march=rv64g -mabi=lp64d
+CFLAGS+=-Wall -DNORMALUNIX -DLINUX -D_DEFAULT_SOURCE
+CFLAGS+=-MMD -MP  # Generate dependency files
+LDFLAGS+=-Wl,--gc-sections -flto
+LIBS+=-lm
 
 # subdirectory for objects
 OBJDIR=build
@@ -38,14 +33,13 @@ clean:
 	rm -f $(OUTPUT)
 	rm -f $(OUTPUT).gdb
 	rm -f $(OUTPUT).map
-# $(VB)$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) \
 	-o $(OUTPUT) $(LIBS) -Wl,-Map,$(OUTPUT).map
 
-$(OUTPUT):	$(OBJS)
+$(OUTPUT): $(OBJS)
 	@echo [Linking $@]
-	riscv64-unknown-elf-gcc -march=rv64g -mabi=lp64d $(OBJS) -o  $(OUTPUT) 
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LIBS)
 	@echo [Size]
-	-$(CROSS_COMPILE)size $(OUTPUT)
+	-$(CROSS_COMPILE)size $@
 
 $(OBJS): | $(OBJDIR)
 
