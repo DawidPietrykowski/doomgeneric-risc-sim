@@ -1,4 +1,4 @@
-//doomgeneric emscripten port
+//doomgeneric risc-sim port
 
 #include "doomkeys.h"
 #include "m_argv.h"
@@ -30,12 +30,10 @@ void DG_Init()
   gettimeofday(&start, NULL);
 }
 
-
 void DG_DrawFrame()
 {
   *screen_addr = (uint32_t)DG_ScreenBuffer;
 }
-
 
 void DG_SleepMs(uint32_t ms)
 {
@@ -55,7 +53,6 @@ uint32_t DG_GetTicksMs()
     }
     uint32_t ms = us / 1000;
 
-  // printf("ticktime %lu s %lu ms\n", s, ms);
   return (s * 1000 + ms);
 }
 

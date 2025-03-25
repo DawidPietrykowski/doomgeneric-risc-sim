@@ -168,7 +168,6 @@ void R_ExecuteSetViewSize (void);
 
 void D_Display (void)
 {
-    // printf ("D_Display\n");
     static  boolean		viewactivestate = false;
     static  boolean		menuactivestate = false;
     static  boolean		inhelpscreensstate = false;
@@ -208,7 +207,6 @@ void D_Display (void)
     if (gamestate == GS_LEVEL && gametic)
     	HU_Erase();
     
-    // printf ("D_Display: gamestate %d\n", gamestate);
     // do buffered drawing
     switch (gamestate)
     {
@@ -241,8 +239,6 @@ void D_Display (void)
 		D_PageDrawer ();
 		break;
     }
-
-    // printf ("D_Display: gamestate %d\n", gamestate);
     
     // draw buffered stuff to screen
     I_UpdateNoBlit ();
@@ -254,7 +250,6 @@ void D_Display (void)
     if (gamestate == GS_LEVEL && gametic)
     	HU_Drawer ();
     
-    // printf ("D_Display: gamestate %d\n", gamestate);
     // clean up border stuff
     if (gamestate != oldgamestate && gamestate != GS_LEVEL)
     	I_SetPalette (W_CacheLumpName (DEH_String("PLAYPAL"),PU_CACHE));
@@ -290,7 +285,6 @@ void D_Display (void)
     inhelpscreensstate = inhelpscreens;
     oldgamestate = wipegamestate = gamestate;
     
-    // printf ("D_Display: done\n");
     // draw pause pic
     if (paused)
     {
@@ -419,7 +413,7 @@ void doomgeneric_Tick()
 
     TryRunTics (); // will run at least one tic
 
-    // S_UpdateSounds (players[consoleplayer].mo);// move positional sounds
+    S_UpdateSounds (players[consoleplayer].mo);// move positional sounds
 
     // Update display, next frame, with current state.
     if (screenvisible)

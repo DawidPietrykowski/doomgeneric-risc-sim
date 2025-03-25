@@ -8,6 +8,3 @@
 .vs/
 Debug/
 Release/
-doomgeneric/*doomgeneric
-**/*.wad
-.vscode
